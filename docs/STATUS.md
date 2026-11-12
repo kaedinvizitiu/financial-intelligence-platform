@@ -1,11 +1,13 @@
 # Project status
 
-Last updated: 2026-11-11
+Last updated: 2026-11-12
 
 ## Current state
 
-- The local folder is an empty Git repository on `main` with no commits.
-- No GitHub remote has been created or connected.
+- The public GitHub repository is connected at
+  `https://github.com/kaedinvizitiu/financial-intelligence-platform`.
+- `main` tracks `origin/main`; the first project-foundation commit has been
+  pushed.
 - The user has an existing Supabase account, but no project credential has been
   copied into this workspace.
 - Product discovery is sufficiently complete to create the repository and
@@ -14,12 +16,12 @@ Last updated: 2026-11-11
 
 ## Active phase
 
-Phase 1: Discovery and durable context.
+Phase 3: Local workspace scaffold.
 
 ## Next action
 
-Create the public GitHub repository through the user's signed-in browser, connect
-the local repository, add baseline repository files, and make the first commit.
+Create the minimal Next.js/TypeScript dashboard and Python API/worker workspace,
+then establish lint, type-check, test, build, and one root development command.
 
 ## Near-term questions to resolve by experiment
 

@@ -8,19 +8,19 @@ make the application look more complete.
 - [x] Establish the three-agent concept.
 - [x] Establish the initial universe, cadence, UI direction, and safety intent.
 - [x] Create repository-level guidance and project documentation.
-- [ ] Resolve the remaining local-model choices through a small Ollama
-      experiment rather than assumption. Defer macOS automation configuration
-      until the prerequisites recorded in Phase 12 are complete.
+- [x] Select Ollama as the local-model direction, record the exact model as a
+      later benchmark decision, and defer macOS automation until the Phase 12
+      prerequisites are complete.
 
 Completion gate: the confirmed decisions and unresolved choices are clearly
 separated in `docs/DECISIONS.md`.
 
 ## Phase 2: GitHub foundation
 
-- [ ] Create a public GitHub repository through the user's signed-in browser.
-- [ ] Connect the local Git repository to the remote.
-- [ ] Add README, license decision, `.gitignore`, and environment examples.
-- [ ] Make and push the first commit.
+- [x] Create a public GitHub repository through the user's signed-in browser.
+- [x] Connect the local Git repository to the remote.
+- [x] Add README, license decision, `.gitignore`, and environment examples.
+- [x] Make and push the first commit.
 
 Completion gate: the remote repository contains no secret or private data.
 
