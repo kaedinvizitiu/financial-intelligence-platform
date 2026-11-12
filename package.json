@@ -1,0 +1,27 @@
+{
+  "name": "financial-intelligence-platform",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "dev": "concurrently --kill-others-on-fail --names web,api --prefix-colors magenta,cyan \"pnpm dev:web\" \"pnpm dev:api\"",
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "services/api/.venv/bin/uvicorn financial_tracker_api.main:app --app-dir services/api/src --host 127.0.0.1 --port 8000 --reload --reload-dir services/api/src",
+    "build": "pnpm --filter web build",
+    "lint": "pnpm lint:web && pnpm lint:api",
+    "lint:web": "pnpm --filter web lint",
+    "lint:api": "services/api/.venv/bin/ruff check services/api",
+    "typecheck": "pnpm typecheck:web && pnpm typecheck:api",
+    "typecheck:web": "pnpm --filter web typecheck",
+    "typecheck:api": "services/api/.venv/bin/mypy services/api/src",
+    "test": "pnpm test:web && pnpm test:api",
+    "test:web": "pnpm --filter web test",
+    "test:api": "services/api/.venv/bin/pytest services/api/tests",
+    "python:setup": "sh scripts/setup-python.sh",
+    "agents:daily": "services/api/.venv/bin/python -m financial_tracker_api.cli daily",
+    "agents:status": "services/api/.venv/bin/python -m financial_tracker_api.cli status"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

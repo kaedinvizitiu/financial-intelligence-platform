@@ -17,8 +17,9 @@ records. The operating dashboard will run locally first.
 
 ## Current status
 
-The project is in its GitHub foundation phase. Application scaffolding and
-runtime commands have not been implemented yet. See
+The project now has a minimal Next.js dashboard, local FastAPI service, safe
+agent-worker placeholder, and shared development commands. Market data,
+Supabase, Ollama inference, and trading remain intentionally disconnected. See
 [`docs/STATUS.md`](docs/STATUS.md) for the current handoff and
 [`docs/ROADMAP.md`](docs/ROADMAP.md) for the gated build sequence.
 
@@ -42,17 +43,30 @@ runtime commands have not been implemented yet. See
 
 See [`docs/SAFETY.md`](docs/SAFETY.md) for the complete boundaries.
 
-## Planned local commands
+## Local development
 
-These are interfaces reserved by the roadmap and will be added during the
-workspace scaffold:
+Prerequisites are Node.js 20.9 or newer, pnpm, and Python 3.11 or newer.
 
 ```text
+pnpm install
+pnpm python:setup
 pnpm dev
-pnpm agents:daily
-pnpm mission -- --target AMD
-pnpm agents:status
 ```
+
+The dashboard runs at `http://localhost:3000` and the local API runs at
+`http://127.0.0.1:8000`. Additional commands:
+
+```text
+pnpm agents:daily
+pnpm agents:status
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build
+```
+
+`pnpm agents:daily` is currently a no-side-effect readiness check. It fetches
+no market data and creates no orders.
 
 ## Documentation
 

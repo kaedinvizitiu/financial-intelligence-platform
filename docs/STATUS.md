@@ -13,15 +13,30 @@ Last updated: 2026-11-12
 - Product discovery is sufficiently complete to create the repository and
   scaffold, while several implementation choices remain intentionally open.
 - Root project guidance and durable context documents now exist locally.
+- Phase 3 is implemented on `codex/workspace-scaffold`: a minimal Quantum
+  Violet Next.js dashboard, local FastAPI health service, safe worker CLI,
+  shared commands, tests, and production build.
+- `pnpm agents:daily` is deliberately a no-side-effect scaffold command. It
+  fetches no data and creates no orders.
 
 ## Active phase
 
-Phase 3: Local workspace scaffold.
+Phase 3: Local workspace scaffold, pending branch review and merge.
 
 ## Next action
 
-Create the minimal Next.js/TypeScript dashboard and Python API/worker workspace,
-then establish lint, type-check, test, build, and one root development command.
+Review and merge `codex/workspace-scaffold`. After it reaches `main`, begin
+Phase 4 by creating or selecting the Supabase project and adding versioned,
+credential-safe local configuration.
+
+## Verification
+
+- `pnpm lint`: passed
+- `pnpm typecheck`: passed
+- `pnpm test`: passed (2 TypeScript and 4 Python tests)
+- `pnpm build`: passed
+- `pnpm dev`: dashboard returned HTTP 200 and API `/health` returned `status=ok`
+- Desktop and 390 px responsive layouts inspected; no horizontal overflow
 
 ## Near-term questions to resolve by experiment
 

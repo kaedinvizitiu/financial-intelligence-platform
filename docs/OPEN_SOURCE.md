@@ -52,3 +52,27 @@ When a dependency is actually selected, record:
 
 Do not adopt AGPL, Commons Clause, abandoned, or unclear-license code without an
 explicit license review and user decision.
+
+## Selected foundations
+
+Evaluated 2026-11-12 through the GitHub API. Each selected repository is MIT
+licensed, actively maintained, and substantially exceeds the 1,000-star
+discovery threshold.
+
+- [Next.js](https://github.com/vercel/next.js) — 143,496 stars; selected at
+  `16.4.6` for the TypeScript dashboard. Risk: frequent framework changes, so
+  follow the installed version's bundled documentation and keep upgrades
+  isolated.
+- [FastAPI](https://github.com/fastapi/fastapi) — 104,671 stars; selected at
+  `0.162.5` for the local typed API. Only the small framework and Uvicorn server
+  are required; the cloud-oriented standard bundle is intentionally avoided.
+- [concurrently](https://github.com/open-cli-tools/concurrently) — 7,868 stars;
+  selected at `9.2.5` to run the dashboard and API from one root command. It is
+  development-only and can be removed if the workspace later adopts a task
+  runner.
+- [Vitest](https://github.com/vitest-dev/vitest) — 17,377 stars; selected at
+  `4.1.12` for fast TypeScript unit tests. It remains development-only.
+
+Versions are locked in `pnpm-lock.yaml` or the current Python environment and
+bounded in the project manifests. Recheck licenses, maintenance, and release
+notes before major upgrades.
