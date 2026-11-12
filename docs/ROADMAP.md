@@ -26,10 +26,10 @@ Completion gate: the remote repository contains no secret or private data.
 
 ## Phase 3: Local workspace scaffold
 
-- [ ] Create the Next.js/TypeScript dashboard workspace.
-- [ ] Create the Python API and worker workspace.
-- [ ] Establish lint, type-check, test, and build commands.
-- [ ] Provide one root development command.
+- [x] Create the Next.js/TypeScript dashboard workspace.
+- [x] Create the Python API and worker workspace.
+- [x] Establish lint, type-check, test, and build commands.
+- [x] Provide one root development command.
 
 Planned command interface:
 
