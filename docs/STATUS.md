@@ -13,7 +13,7 @@ Last updated: 2026-11-12
 - Product discovery is sufficiently complete to create the repository and
   scaffold, while several implementation choices remain intentionally open.
 - Root project guidance and durable context documents now exist locally.
-- Phase 3 is implemented on `codex/workspace-scaffold`: a minimal Quantum
+- Phase 3 was merged into `main` through pull request #1: a minimal Quantum
   Violet Next.js dashboard, local FastAPI health service, safe worker CLI,
   shared commands, tests, and production build.
 - `pnpm agents:daily` is deliberately a no-side-effect scaffold command. It
@@ -21,13 +21,13 @@ Last updated: 2026-11-12
 
 ## Active phase
 
-Phase 3: Local workspace scaffold, pending branch review and merge.
+Phase 4: Supabase foundation.
 
 ## Next action
 
-Review and merge `codex/workspace-scaffold`. After it reaches `main`, begin
-Phase 4 by creating or selecting the Supabase project and adding versioned,
-credential-safe local configuration.
+Create or select the Supabase project, add versioned migrations and generated
+types, configure ignored local credentials, and verify a harmless private test
+record without exposing a privileged key to the browser.
 
 ## Verification
 
