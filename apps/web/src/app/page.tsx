@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { agents } from "@/lib/agent-definitions";
+
+const ShipScene = dynamic(() => import("@/components/ShipScene"), { ssr: false });
 
 type ViewMode = "dashboard" | "ship";
 type Focus = "command" | "research" | "analysis" | "portfolio" | "archive" | "simulation";
@@ -82,4 +85,4 @@ function MissionDetail({ focus, trace }: { focus: Focus; trace: MissionTrace | n
 
 function Fact({ label, value, tone }: { label: string; value: string; tone: string }) { return <div className="fact-row"><span>{label}</span><strong className={tone}>{value}</strong></div>; }
 function TraceStep({ number, label, detail, status, warning = false, onClick }: { number: string; label: string; detail: string; status: string; warning?: boolean; onClick: () => void }) { return <button className="trace-step trace-button" onClick={onClick} type="button"><span className="trace-number">{number}</span><div className={`trace-check ${warning ? "warning" : ""}`}>{warning ? "!" : "✓"}</div><div className="trace-copy"><strong>{label}</strong><span>{detail}</span></div><span className={`trace-status ${warning ? "warning-text" : ""}`}>{status}</span></button>; }
-function ShipView({ onFocus }: { onFocus: (focus: Focus) => void }) { return <div className="ship-view" aria-label="2D ship view"><div className="ship-copy"><p className="eyebrow">Simulation deck / isometric preview</p><h2>Mission control, in orbit.</h2><p>The stations are interactive now. Select one to inspect the same AMD mission trace shown in the dashboard.</p><div className="ship-legend"><span><i className="legend-dot violet" />Command</span><span><i className="legend-dot cyan" />Research</span><span><i className="legend-dot pink" />Analysis</span></div></div><div className="ship-diagram"><div className="ship-core"><span>FT</span></div><div className="ship-ring ring-one" /><div className="ship-ring ring-two" /><button className="ship-node node-one" onClick={() => onFocus("research")} type="button">◉<small>OBSERVATORY</small></button><button className="ship-node node-two" onClick={() => onFocus("analysis")} type="button">◇<small>STRATEGY CORE</small></button><button className="ship-node node-three" onClick={() => onFocus("portfolio")} type="button">↗<small>EXCHANGE BRIDGE</small></button></div></div>; }
+function ShipView({ onFocus }: { onFocus: (focus: Focus) => void }) { return <div className="ship-view" aria-label="3D ship view"><div className="ship-copy"><p className="eyebrow">Simulation deck / interactive 3D ship</p><h2>Mission control, in orbit.</h2><p>Orbit the command deck, watch the crew move, and select a station to inspect the same AMD mission trace shown in the dashboard.</p><div className="ship-legend"><span><i className="legend-dot violet" />Command</span><span><i className="legend-dot cyan" />Research</span><span><i className="legend-dot pink" />Analysis</span></div></div><ShipScene onFocus={onFocus} /></div>; }

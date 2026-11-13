@@ -51,7 +51,7 @@ These tokens will be checked for readable contrast before implementation.
 
 ## Motion
 
-Start balanced:
+Start balanced, with the 3D ship extension now authorized:
 
 - agent movement and state changes;
 - glowing active stations;
@@ -59,9 +59,10 @@ Start balanced:
 - subtle particles and ambient effects;
 - visible waiting, success, warning, and error states.
 
-Provide reduced-motion behavior. Preserve cinematic and 3D extension points but
-do not make them requirements for the functional product. At the end of the
-primary build, ask the user whether to begin the 3D spaceship phase.
+Provide reduced-motion behavior. The initial 3D ship should use procedural
+geometry and data-backed state transitions. Keep a conventional dashboard
+fallback available, and do not make WebGL the only way to inspect financial
+information.
 
 ## Future customization
 

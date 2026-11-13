@@ -30,6 +30,9 @@
   spaceship/isometric dashboard examples first, verify their licenses and
   maintenance, and build a visually strong, meaningfully interactive result
   suitable for demonstration.
+- The user explicitly authorized beginning the 3D ship extension. Use a
+  procedural Three.js scene with React Three Fiber and Drei, keep the scene
+  interactive and data-backed, and avoid unlicensed third-party art assets.
 - Agent visual concept: one robot, one holographic intelligence, and one
   humanoid.
 - Agent personalities are memorable but professional and later customizable.

@@ -41,6 +41,10 @@ Last updated: 2026-11-13
   mission trace through a protected local API and exposes evidence, facts,
   agent runs, report outcome and score, signal, approval, audit events, paper
   orders, and the fail-closed explanation through dashboard and ship stations.
+- The user-approved 3D ship extension now has a procedural React Three Fiber
+  scene with orbit/zoom controls, animated agent figures, clickable stations,
+  moving telemetry beads, truthful simulated-state labeling, and a dashboard
+  fallback. It uses no third-party art assets.
 - Product discovery is sufficiently complete to create the repository and
   scaffold, while several implementation choices remain intentionally open.
 - Root project guidance and durable context documents now exist locally.
@@ -79,6 +83,8 @@ policy is documented for the later trigger phase; it is not running yet.
 - Phase 7 vertical-slice checks: protected mission API returned the hosted AMD
   trace; dashboard and ship stations opened live mission detail; lint,
   typecheck, tests, and production build passed
+- 3D ship checks: WebGL canvas rendered in-browser, station interaction opened
+  the live Strategy Core detail, and reduced-motion handling is implemented
 
 ## Near-term questions to resolve by experiment
 
