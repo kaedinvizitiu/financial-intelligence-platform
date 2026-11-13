@@ -68,14 +68,15 @@ paper orders.
 
 ## Phase 6: Dashboard shell and design system
 
-- [ ] Implement the Quantum Violet tokens and typography.
-- [ ] Implement conventional dashboard navigation.
-- [ ] Implement the first 2D/isometric spaceship shell.
-- [ ] Add accessibility, reduced-motion behavior, and theme customization
+- [x] Implement the Quantum Violet tokens and typography.
+- [x] Implement conventional dashboard navigation.
+- [x] Implement the first 2D/isometric spaceship shell.
+- [x] Add accessibility, reduced-motion behavior, and theme customization
       foundations.
 
 Completion gate: both navigation modes reach the same placeholder information
-without duplicating business logic.
+without duplicating business logic. Complete as of 2026-11-13: the dashboard
+and ship views share the same paper portfolio and simulated AMD mission state.
 
 ## Phase 7: One vertical slice
 

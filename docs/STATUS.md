@@ -34,6 +34,9 @@ Last updated: 2026-11-13
 - `pnpm agents:replay` is idempotent for the fixture; immutable events are
   inserted with duplicate-ignore semantics so replay never updates audit
   history.
+- Phase 6 dashboard shell is implemented with Quantum Violet tokens,
+  conventional navigation, a responsive layout, paper-mode guardrails, and a
+  shared-state dashboard/2D ship-view toggle.
 - Product discovery is sufficiently complete to create the repository and
   scaffold, while several implementation choices remain intentionally open.
 - Root project guidance and durable context documents now exist locally.
@@ -45,13 +48,12 @@ Last updated: 2026-11-13
 
 ## Active phase
 
-Phase 6: Dashboard shell and design system.
+Phase 7: One vertical slice.
 
 ## Next action
 
-Begin the Quantum Violet dashboard shell and design-system implementation,
-keeping the conventional dashboard and future isometric view on shared data
-and business logic.
+Connect the visible dashboard to one manual end-of-day mission flow so a user
+can inspect evidence, the structured report, score, and paper decision.
 
 ## Verification
 
@@ -66,6 +68,9 @@ and business logic.
 - Phase 5 checks: 6 Python tests passed, Ruff passed, mypy passed, and remote
   Supabase records were verified through the protected server-side path
 - `pnpm agents:replay`: passed on a repeat run with no order creation
+- Phase 6 web checks: lint, typecheck, tests, and production build passed
+- Phase 6 visual check: dashboard and ship views rendered with responsive
+  navigation and shared mission-state content
 
 ## Near-term questions to resolve by experiment
 
