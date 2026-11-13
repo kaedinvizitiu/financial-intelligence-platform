@@ -26,6 +26,10 @@
 - UI: Quantum Violet digital trading spaceship plus a conventional dashboard.
 - Start with a polished 2D/isometric world and preserve room for a later 3D
   spaceship.
+- When implementing the full ship UI, research polished open-source
+  spaceship/isometric dashboard examples first, verify their licenses and
+  maintenance, and build a visually strong, meaningfully interactive result
+  suitable for demonstration.
 - Agent visual concept: one robot, one holographic intelligence, and one
   humanoid.
 - Agent personalities are memorable but professional and later customizable.
