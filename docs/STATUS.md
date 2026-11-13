@@ -1,6 +1,6 @@
 # Project status
 
-Last updated: 2026-11-12
+Last updated: 2026-11-13
 
 ## Current state
 
@@ -8,8 +8,32 @@ Last updated: 2026-11-12
   `https://github.com/kaedinvizitiu/financial-intelligence-platform`.
 - `main` tracks `origin/main`; the first project-foundation commit has been
   pushed.
-- The user has an existing Supabase account, but no project credential has been
-  copied into this workspace.
+- The local server-only Supabase credential is stored in the ignored local
+  environment file; no privileged credential is committed or exposed to the
+  browser.
+- A Free Supabase organization and project now exist for Financial Tracker at
+  `vtacthvtjcyrqfdexvkx` in `us-east-1`; the server-only secret remains outside
+  chat and is stored in the ignored local environment file.
+- The Supabase CLI is installed as a project dev dependency, initialized, and
+  linked to hosted project `vtacthvtjcyrqfdexvkx`.
+- The Phase 4 migration is applied. Local Python code successfully wrote a
+  harmless `phase4-connectivity-check` record through the server-only client.
+- The remote Supabase migration history is reconciled with the checked-in
+  migration; local and remote version `20261112160000` now match.
+- Unused temporary CLI tokens were revoked. The active browser-authenticated
+  CLI token remains in Supabase and is not stored in the repository.
+- Phase 5 data-model migration `20261113090000` is applied to Supabase and
+  generated TypeScript database types are checked in.
+- Phase 5 now models paper portfolios, strategies, research missions, sources,
+  normalized facts, agent runs, reports, signals, approvals, paper orders,
+  fills, positions, and append-only events with provenance, freshness, and
+  versioning fields.
+- The deterministic simulated AMD mission replay completed against Supabase:
+  evidence was recorded, the report returned `INSUFFICIENT_DATA`, the signal
+  was `NO_ACTION`, and zero paper orders were created.
+- `pnpm agents:replay` is idempotent for the fixture; immutable events are
+  inserted with duplicate-ignore semantics so replay never updates audit
+  history.
 - Product discovery is sufficiently complete to create the repository and
   scaffold, while several implementation choices remain intentionally open.
 - Root project guidance and durable context documents now exist locally.
@@ -21,13 +45,13 @@ Last updated: 2026-11-12
 
 ## Active phase
 
-Phase 4: Supabase foundation.
+Phase 6: Dashboard shell and design system.
 
 ## Next action
 
-Create or select the Supabase project, add versioned migrations and generated
-types, configure ignored local credentials, and verify a harmless private test
-record without exposing a privileged key to the browser.
+Begin the Quantum Violet dashboard shell and design-system implementation,
+keeping the conventional dashboard and future isometric view on shared data
+and business logic.
 
 ## Verification
 
@@ -37,6 +61,11 @@ record without exposing a privileged key to the browser.
 - `pnpm build`: passed
 - `pnpm dev`: dashboard returned HTTP 200 and API `/health` returned `status=ok`
 - Desktop and 390 px responsive layouts inspected; no horizontal overflow
+- Phase 5 replay: completed simulated AMD mission; `NO_ACTION`; zero paper
+  orders
+- Phase 5 checks: 6 Python tests passed, Ruff passed, mypy passed, and remote
+  Supabase records were verified through the protected server-side path
+- `pnpm agents:replay`: passed on a repeat run with no order creation
 
 ## Near-term questions to resolve by experiment
 
@@ -50,7 +79,7 @@ record without exposing a privileged key to the browser.
 ## Current blockers
 
 None. Ollama is the selected default local-model runtime, but installing it is
-not required before repository setup or the first deterministic vertical slice.
+not required before the first deterministic vertical slice.
 
 ## Deferred reminders
 

@@ -16,12 +16,14 @@
     "typecheck:api": "services/api/.venv/bin/mypy services/api/src",
     "test": "pnpm test:web && pnpm test:api",
     "test:web": "pnpm --filter web test",
-    "test:api": "services/api/.venv/bin/pytest services/api/tests",
+    "test:api": "PYTHONPATH=services/api/src services/api/.venv/bin/pytest services/api/tests",
     "python:setup": "sh scripts/setup-python.sh",
-    "agents:daily": "services/api/.venv/bin/python -m financial_tracker_api.cli daily",
-    "agents:status": "services/api/.venv/bin/python -m financial_tracker_api.cli status"
+    "agents:daily": "PYTHONPATH=services/api/src services/api/.venv/bin/python -m financial_tracker_api.cli daily",
+    "agents:status": "PYTHONPATH=services/api/src services/api/.venv/bin/python -m financial_tracker_api.cli status",
+    "agents:replay": "PYTHONPATH=services/api/src services/api/.venv/bin/python -m financial_tracker_api.cli replay"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "supabase": "^3.1.0"
   }
 }

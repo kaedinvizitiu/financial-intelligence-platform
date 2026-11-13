@@ -1,4 +1,5 @@
 from financial_tracker_api.cli import main
+from financial_tracker_api.replay import build_amd_fixture
 from financial_tracker_api.worker import daily_cycle_status, service_status
 
 
@@ -19,3 +20,11 @@ def test_service_status_disables_risky_features() -> None:
 
 def test_cli_status() -> None:
     assert main(["status"]) == 0
+
+
+def test_amd_fixture_is_simulated_and_fail_closed() -> None:
+    fixture = build_amd_fixture()
+
+    assert fixture["research_missions"][0]["is_simulated"] is True
+    assert fixture["signals"][0]["action"] == "NO_ACTION"
+    assert "paper_orders" not in fixture

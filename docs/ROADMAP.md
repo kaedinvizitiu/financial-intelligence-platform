@@ -45,24 +45,26 @@ their baseline checks.
 
 ## Phase 4: Supabase foundation
 
-- [ ] Select or create the Supabase project through the user's signed-in
+- [x] Select or create the Supabase project through the user's signed-in
       browser.
-- [ ] Store only appropriate credentials in ignored local environment files.
-- [ ] Create versioned migrations and generated types.
-- [ ] Implement access policies and private/public data separation.
+- [x] Store only appropriate credentials in ignored local environment files.
+- [x] Create versioned migrations and generated types.
+- [x] Implement access policies and private/public data separation.
 
 Completion gate: local code can read and write a harmless test record without
-exposing a privileged credential to the browser.
+exposing a privileged credential to the browser. Complete as of 2026-11-12.
 
 ## Phase 5: Data model and audit trail
 
-- [ ] Model research missions, sources, normalized facts, agent runs, reports,
+- [x] Model research missions, sources, normalized facts, agent runs, reports,
       signals, approvals, paper orders, fills, positions, and events.
-- [ ] Add timestamps, provenance, versioning, and data-freshness fields.
-- [ ] Make trading history append-only or equivalently auditable.
+- [x] Add timestamps, provenance, versioning, and data-freshness fields.
+- [x] Make trading history append-only or equivalently auditable.
 
 Completion gate: one fake mission can be replayed from evidence through a paper
-decision.
+decision. Complete as of 2026-11-13: the deterministic AMD fixture was replayed
+against Supabase, produced an auditable `NO_ACTION` decision, and created zero
+paper orders.
 
 ## Phase 6: Dashboard shell and design system
 
