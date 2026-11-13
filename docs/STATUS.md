@@ -37,6 +37,10 @@ Last updated: 2026-11-13
 - Phase 6 dashboard shell is implemented with Quantum Violet tokens,
   conventional navigation, a responsive layout, paper-mode guardrails, and a
   shared-state dashboard/2D ship-view toggle.
+- Phase 7 vertical slice is complete: the dashboard reads the hosted AMD
+  mission trace through a protected local API and exposes evidence, facts,
+  agent runs, report outcome and score, signal, approval, audit events, paper
+  orders, and the fail-closed explanation through dashboard and ship stations.
 - Product discovery is sufficiently complete to create the repository and
   scaffold, while several implementation choices remain intentionally open.
 - Root project guidance and durable context documents now exist locally.
@@ -48,18 +52,19 @@ Last updated: 2026-11-13
 
 ## Active phase
 
-Phase 7: One vertical slice.
+Phase 8: Research Agent.
 
 ## Next action
 
-Connect the visible dashboard to one manual end-of-day mission flow so a user
-can inspect evidence, the structured report, score, and paper decision.
+Build the Research Agent's first permitted data-source adapter while keeping
+the deterministic AMD fixture available for regression checks. The scheduling
+policy is documented for the later trigger phase; it is not running yet.
 
 ## Verification
 
 - `pnpm lint`: passed
 - `pnpm typecheck`: passed
-- `pnpm test`: passed (2 TypeScript and 4 Python tests)
+- `pnpm test`: passed (2 TypeScript and 7 Python tests)
 - `pnpm build`: passed
 - `pnpm dev`: dashboard returned HTTP 200 and API `/health` returned `status=ok`
 - Desktop and 390 px responsive layouts inspected; no horizontal overflow
@@ -71,6 +76,9 @@ can inspect evidence, the structured report, score, and paper decision.
 - Phase 6 web checks: lint, typecheck, tests, and production build passed
 - Phase 6 visual check: dashboard and ship views rendered with responsive
   navigation and shared mission-state content
+- Phase 7 vertical-slice checks: protected mission API returned the hosted AMD
+  trace; dashboard and ship stations opened live mission detail; lint,
+  typecheck, tests, and production build passed
 
 ## Near-term questions to resolve by experiment
 

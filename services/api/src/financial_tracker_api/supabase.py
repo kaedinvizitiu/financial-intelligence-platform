@@ -1,6 +1,7 @@
 """Small server-only Supabase REST client for local agent operations."""
 
 import os
+from collections.abc import Mapping
 from dataclasses import dataclass
 
 import httpx
@@ -82,3 +83,24 @@ def insert_rows(table: str, rows: list[dict[str, object]]) -> None:
         timeout=10,
     )
     response.raise_for_status()
+
+
+def read_rows(table: str, params: Mapping[str, str]) -> list[dict[str, object]]:
+    """Read server-owned rows through the protected Data API."""
+    config = SupabaseConfig.from_environment()
+    response = httpx.get(
+        f"{config.url}/rest/v1/{table}",
+        headers={
+            "apikey": config.secret_key,
+            "Authorization": f"Bearer {config.secret_key}",
+        },
+        params=dict(params),
+        timeout=10,
+    )
+    response.raise_for_status()
+    records = response.json()
+    if not isinstance(records, list) or not all(
+        isinstance(row, dict) for row in records
+    ):
+        raise RuntimeError(f"Supabase returned unexpected rows for {table}.")
+    return records

@@ -80,12 +80,15 @@ and ship views share the same paper portfolio and simulated AMD mission state.
 
 ## Phase 7: One vertical slice
 
-- [ ] Run one manual end-of-day mission for one target.
-- [ ] Store evidence, a structured report, a score, and a paper decision.
-- [ ] Display the complete trace in the UI.
+- [x] Run one manual end-of-day mission for one target.
+- [x] Store evidence, a structured report, a score, and a paper decision.
+- [x] Display the complete trace in the UI.
 
 Completion gate: a user can follow every result back to its source and see why a
-paper action was accepted or rejected.
+paper action was accepted or rejected. Complete as of 2026-11-13: the hosted
+AMD fixture is readable through a protected local API, and the dashboard and
+interactive ship stations expose the evidence, report, signal, approval,
+events, paper-order count, and fail-closed reason.
 
 ## Phase 8: Research Agent
 
@@ -150,6 +153,14 @@ portfolio-risk limits, and expiry/assignment behavior is tested.
 - [ ] Price and volatility triggers
 - [ ] Strategy-testing missions
 - [ ] macOS background worker, catch-up behavior, and notifications
+
+Planned operating policy: monitor market prices, volatility, exposure, and
+deterministic risk every 15 minutes during market hours; perform full-universe
+analysis after the close; trigger focused analysis immediately for major price
+or volatility events; and check permitted overnight news and filing sources
+hourly. Agent 1 collects internet evidence, Ollama performs local Agent 2
+analysis only when relevant evidence changes, and Codex is not required by the
+runtime.
 
 Completion gate: triggers are idempotent, missed runs can safely catch up, and
 the wake/schedule/keep-awake setup has been tested without duplicating a run.

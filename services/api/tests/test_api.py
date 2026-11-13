@@ -23,3 +23,15 @@ def test_health_endpoint() -> None:
         "status": "ok",
         "service": "financial-tracker-api",
     }
+
+
+def test_mission_trace_returns_safe_read_model(monkeypatch) -> None:
+    monkeypatch.setattr(
+        "financial_tracker_api.main.get_mission_trace",
+        lambda mission_key: {"mission": {"mission_key": mission_key}, "signals": []},
+    )
+
+    response = TestClient(app).get("/missions/fixture-amd-2026-11-12")
+
+    assert response.status_code == 200
+    assert response.json()["mission"]["mission_key"] == "fixture-amd-2026-11-12"

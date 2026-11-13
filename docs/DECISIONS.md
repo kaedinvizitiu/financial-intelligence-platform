@@ -38,6 +38,16 @@
 - Notifications: in-app and macOS; email for urgent events.
 - Use free news/data sources initially unless spending is later justified and
   explicitly approved.
+- Planned runtime cadence: monitor market prices, volatility, portfolio
+  exposure, and deterministic risk conditions every 15 minutes during market
+  hours; run full-universe analysis after the close; trigger focused analysis
+  immediately for major price or volatility events; and check overnight news,
+  filings, and earnings-related evidence hourly when permitted by source
+  limits.
+- Agent 1 owns internet collection and evidence normalization. Agent 2 uses
+  Ollama locally only after relevant evidence changes. Codex is not part of the
+  always-on runtime and is reserved for development, inspection, and explicit
+  on-demand control.
 - A small MCP connection is desirable.
 - The repository is public, but an open-source license will not be granted
   until the user deliberately selects one.

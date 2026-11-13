@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "pnpm@11.25.0",
   "scripts": {
-    "dev": "concurrently --kill-others-on-fail --names web,api --prefix-colors magenta,cyan \"pnpm dev:web\" \"pnpm dev:api\"",
+    "dev": "set -a; [ -f .env.local ] && . ./.env.local; set +a; concurrently --kill-others-on-fail --names web,api --prefix-colors magenta,cyan \"pnpm dev:web\" \"pnpm dev:api\"",
     "dev:web": "pnpm --filter web dev",
     "dev:api": "services/api/.venv/bin/uvicorn financial_tracker_api.main:app --app-dir services/api/src --host 127.0.0.1 --port 8000 --reload --reload-dir services/api/src",
     "build": "pnpm --filter web build",
@@ -20,7 +20,7 @@
     "python:setup": "sh scripts/setup-python.sh",
     "agents:daily": "PYTHONPATH=services/api/src services/api/.venv/bin/python -m financial_tracker_api.cli daily",
     "agents:status": "PYTHONPATH=services/api/src services/api/.venv/bin/python -m financial_tracker_api.cli status",
-    "agents:replay": "PYTHONPATH=services/api/src services/api/.venv/bin/python -m financial_tracker_api.cli replay"
+    "agents:replay": "set -a; [ -f .env.local ] && . ./.env.local; set +a; PYTHONPATH=services/api/src services/api/.venv/bin/python -m financial_tracker_api.cli replay"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
