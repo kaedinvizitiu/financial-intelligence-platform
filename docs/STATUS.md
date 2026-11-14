@@ -49,6 +49,10 @@ Last updated: 2026-11-13
   planet windows, distinct robot/hologram/crew forms, and floating in-world
   station panels. Ship navigation now keeps the user inside Ship View instead
   of sending station clicks to the dashboard.
+- The latest interaction pass widened the clickable hit zones for rooms and
+  agents and added structural hull/ceiling detail, console faces, and room
+  framing so clicking the visible geometry is no longer dependent on a tiny
+  label target.
 - Product discovery is sufficiently complete to create the repository and
   scaffold, while several implementation choices remain intentionally open.
 - Root project guidance and durable context documents now exist locally.

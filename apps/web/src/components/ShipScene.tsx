@@ -45,6 +45,8 @@ function ShipDeck({ onFocus, reducedMotion }: { onFocus: (focus: Focus) => void;
     <mesh position={[0, 0.35, 0]}><cylinderGeometry args={[1.45, 1.85, 0.55, 48]} /><meshStandardMaterial color="#171329" emissive="#241b54" emissiveIntensity={0.7} metalness={0.85} roughness={0.25} /></mesh>
     <mesh position={[0, 0.66, 0]}><torusGeometry args={[1.6, 0.035, 8, 64]} /><meshBasicMaterial color="#a78bfa" /></mesh>
     <mesh position={[0, 0.72, 0]}><sphereGeometry args={[0.5, 32, 16]} /><meshStandardMaterial color="#221b46" emissive="#a78bfa" emissiveIntensity={1.8} transparent opacity={0.9} /></mesh>
+    <HullRim />
+    <CeilingStructure />
     <PlanetWindow position={[-5.3, 1.4, -3.7]} planet="#3b82f6" accent="#38bdf8" scale={0.85} />
     <PlanetWindow position={[5.3, 1.15, -3.8]} planet="#d97706" accent="#f59e0b" scale={0.7} />
     <RoomModule position={[-4.4, 0.35, 0.9]} color="#38bdf8" label="DATA OBSERVATORY" />
@@ -60,7 +62,15 @@ function ShipDeck({ onFocus, reducedMotion }: { onFocus: (focus: Focus) => void;
 }
 
 function RoomModule({ position, color, label }: { position: [number, number, number]; color: string; label: string }) {
-  return <group position={position}><mesh><boxGeometry args={[1.9, 0.55, 1.1]} /><meshStandardMaterial color="#11101f" emissive={color} emissiveIntensity={0.18} metalness={0.8} roughness={0.35} /></mesh><mesh position={[0, 0.31, 0]}><boxGeometry args={[1.45, 0.025, 0.55]} /><meshBasicMaterial color={color} transparent opacity={0.7} /></mesh><mesh position={[0, 0.62, 0]}><torusGeometry args={[0.4, 0.02, 6, 24]} /><meshBasicMaterial color={color} /></mesh><Html center distanceFactor={9} position={[0, 0.78, 0]}><span className="ship-room-label" style={{ color }}>{label}</span></Html></group>;
+  return <group position={position}><mesh><boxGeometry args={[1.9, 0.55, 1.1]} /><meshStandardMaterial color="#11101f" emissive={color} emissiveIntensity={0.18} metalness={0.8} roughness={0.35} /></mesh><mesh position={[0, 0.31, 0]}><boxGeometry args={[1.45, 0.025, 0.55]} /><meshBasicMaterial color={color} transparent opacity={0.7} /></mesh><mesh position={[0, 0.62, 0]}><torusGeometry args={[0.4, 0.02, 6, 24]} /><meshBasicMaterial color={color} /></mesh><mesh position={[0, 0.63, -0.54]}><boxGeometry args={[0.72, 0.95, 0.06]} /><meshStandardMaterial color="#202038" emissive={color} emissiveIntensity={0.18} metalness={0.6} /></mesh><mesh position={[-0.43, 0.63, -0.54]}><boxGeometry args={[0.035, 1.1, 0.08]} /><meshBasicMaterial color={color} /></mesh><mesh position={[0.43, 0.63, -0.54]}><boxGeometry args={[0.035, 1.1, 0.08]} /><meshBasicMaterial color={color} /></mesh><Html center distanceFactor={9} position={[0, 0.78, 0]}><span className="ship-room-label" style={{ color }}>{label}</span></Html></group>;
+}
+
+function HullRim() {
+  return <group><mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0.12, 0]}><torusGeometry args={[5.8, 0.08, 10, 96]} /><meshStandardMaterial color="#221b3d" emissive="#5d48a1" emissiveIntensity={0.45} metalness={0.9} roughness={0.25} /></mesh><mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0.18, 0]}><torusGeometry args={[6.25, 0.025, 8, 96]} /><meshBasicMaterial color="#38bdf8" transparent opacity={0.45} /></mesh></group>;
+}
+
+function CeilingStructure() {
+  return <group position={[0, 2.4, -0.7]} rotation={[0.15, 0, 0]}><mesh><boxGeometry args={[9.5, 0.08, 0.08]} /><meshStandardMaterial color="#2c2650" metalness={0.9} roughness={0.3} /></mesh><mesh position={[-3.4, 0, 0]}><boxGeometry args={[0.08, 0.08, 5.8]} /><meshStandardMaterial color="#2c2650" metalness={0.9} roughness={0.3} /></mesh><mesh position={[3.4, 0, 0]}><boxGeometry args={[0.08, 0.08, 5.8]} /><meshStandardMaterial color="#2c2650" metalness={0.9} roughness={0.3} /></mesh><mesh position={[0, 0, -2.2]}><boxGeometry args={[7.2, 0.05, 0.05]} /><meshBasicMaterial color="#a78bfa" transparent opacity={0.65} /></mesh></group>;
 }
 
 function PlanetWindow({ position, planet, accent, scale }: { position: [number, number, number]; planet: string; accent: string; scale: number }) {
@@ -69,6 +79,7 @@ function PlanetWindow({ position, planet, accent, scale }: { position: [number, 
 
 function Station({ station, onClick }: { station: typeof stations[number]; onClick: () => void }) {
   return <group position={station.position} onClick={(event) => { event.stopPropagation(); onClick(); }}>
+    <mesh position={[0, 0.45, 0]}><boxGeometry args={[2.2, 1.2, 1.65]} /><meshBasicMaterial transparent opacity={0.01} depthWrite={false} /></mesh>
     <mesh><cylinderGeometry args={[0.9, 1.1, 0.24, 32]} /><meshStandardMaterial color="#151126" emissive={station.color} emissiveIntensity={0.22} metalness={0.75} roughness={0.3} /></mesh>
     <mesh position={[0, 0.16, 0]}><torusGeometry args={[0.78, 0.025, 8, 48]} /><meshBasicMaterial color={station.color} /></mesh>
     <mesh position={[0, 0.52, 0]}><octahedronGeometry args={[0.35, 1]} /><meshStandardMaterial color={station.color} emissive={station.color} emissiveIntensity={1.1} metalness={0.5} roughness={0.2} /></mesh>
@@ -87,6 +98,7 @@ function AnimatedAgent({ index, kind, position, color, onClick, reducedMotion }:
     ref.current.rotation.y = time * 0.4 + index;
   });
   return <group ref={ref} position={position} onClick={(event) => { event.stopPropagation(); onClick(); }}>
+    <mesh position={[0, 0.35, 0]}><sphereGeometry args={[0.55, 12, 8]} /><meshBasicMaterial transparent opacity={0.01} depthWrite={false} /></mesh>
     {kind === "robot" && <><mesh position={[0, 0.27, 0]}><boxGeometry args={[0.34, 0.5, 0.3]} /><meshStandardMaterial color="#c9d4e9" emissive={color} emissiveIntensity={0.3} metalness={0.7} roughness={0.25} /></mesh><mesh position={[0, 0.68, 0]}><boxGeometry args={[0.3, 0.24, 0.28]} /><meshStandardMaterial color="#dce9ff" emissive={color} emissiveIntensity={0.7} /></mesh><mesh position={[0, 0.69, 0.15]}><boxGeometry args={[0.14, 0.035, 0.02]} /><meshBasicMaterial color={color} /></mesh></>}
     {kind === "hologram" && <><mesh position={[0, 0.33, 0]}><cylinderGeometry args={[0.22, 0.32, 0.58, 16]} /><meshStandardMaterial color={color} emissive={color} emissiveIntensity={1.4} transparent opacity={0.5} /></mesh><mesh position={[0, 0.73, 0]}><sphereGeometry args={[0.2, 16, 12]} /><meshStandardMaterial color="#f5eaff" emissive={color} emissiveIntensity={2} transparent opacity={0.72} /></mesh><mesh position={[0, 0.33, 0]}><torusGeometry args={[0.34, 0.018, 6, 32]} /><meshBasicMaterial color={color} /></mesh></>}
     {kind === "crew" && <><mesh position={[0, 0.28, 0]}><capsuleGeometry args={[0.2, 0.42, 8, 16]} /><meshStandardMaterial color="#dcd5ff" emissive={color} emissiveIntensity={0.3} metalness={0.5} roughness={0.24} /></mesh><mesh position={[0, 0.68, 0]}><sphereGeometry args={[0.18, 16, 12]} /><meshStandardMaterial color="#f2eeff" emissive={color} emissiveIntensity={1.5} /></mesh><mesh position={[-0.27, 0.3, 0]} rotation={[0, 0, -0.25]}><capsuleGeometry args={[0.05, 0.25, 6, 8]} /><meshStandardMaterial color="#dcd5ff" /></mesh><mesh position={[0.27, 0.3, 0]} rotation={[0, 0, 0.25]}><capsuleGeometry args={[0.05, 0.25, 6, 8]} /><meshStandardMaterial color="#dcd5ff" /></mesh></>}
