@@ -45,6 +45,10 @@ Last updated: 2026-11-13
   scene with orbit/zoom controls, animated agent figures, clickable stations,
   moving telemetry beads, truthful simulated-state labeling, and a dashboard
   fallback. It uses no third-party art assets.
+- The next ship refinement adds a starship interior layout with room modules,
+  planet windows, distinct robot/hologram/crew forms, and floating in-world
+  station panels. Ship navigation now keeps the user inside Ship View instead
+  of sending station clicks to the dashboard.
 - Product discovery is sufficiently complete to create the repository and
   scaffold, while several implementation choices remain intentionally open.
 - Root project guidance and durable context documents now exist locally.

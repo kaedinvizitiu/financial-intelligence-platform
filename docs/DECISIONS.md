@@ -24,8 +24,8 @@
   autonomous, larger trades require approval, and live options initially
   require approval.
 - UI: Quantum Violet digital trading spaceship plus a conventional dashboard.
-- Start with a polished 2D/isometric world and preserve room for a later 3D
-  spaceship.
+- Start with a polished 2D/isometric world and a 3D futuristic starship
+  interior, with the conventional dashboard remaining a separate view.
 - When implementing the full ship UI, research polished open-source
   spaceship/isometric dashboard examples first, verify their licenses and
   maintenance, and build a visually strong, meaningfully interactive result
@@ -33,6 +33,14 @@
 - The user explicitly authorized beginning the 3D ship extension. Use a
   procedural Three.js scene with React Three Fiber and Drei, keep the scene
   interactive and data-backed, and avoid unlicensed third-party art assets.
+- Ship View is its own primary navigation surface: selecting a room, station,
+  or agent opens an in-world floating holographic panel and does not switch to
+  the conventional dashboard. The dashboard remains available as a separate
+  view.
+- Agents move meaningfully when their state changes, with subtle idle motion
+  between events. The camera remains orbitable with click-to-focus transitions;
+  planet views and space belong outside the hull; agents are professional,
+  visually distinct, and customizable later.
 - Agent visual concept: one robot, one holographic intelligence, and one
   humanoid.
 - Agent personalities are memorable but professional and later customizable.

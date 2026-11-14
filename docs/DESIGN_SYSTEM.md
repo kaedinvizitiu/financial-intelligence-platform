@@ -62,7 +62,8 @@ Start balanced, with the 3D ship extension now authorized:
 Provide reduced-motion behavior. The initial 3D ship should use procedural
 geometry and data-backed state transitions. Keep a conventional dashboard
 fallback available, and do not make WebGL the only way to inspect financial
-information.
+information. Ship View is navigated through rooms, stations, agents, and
+holographic panels; it should not force a dashboard route for inspection.
 
 ## Future customization
 

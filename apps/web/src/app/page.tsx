@@ -43,21 +43,21 @@ export default function Home() {
       .catch(() => setTraceError(true));
   }, []);
 
-  function selectFocus(nextFocus: Focus) {
+  function selectFocus(nextFocus: Focus, switchToDashboard = false) {
     setFocus(nextFocus);
-    setView("dashboard");
+    if (switchToDashboard) setView("dashboard");
   }
 
   return <main className="app-shell">
     <aside className="sidebar" aria-label="Primary navigation">
       <div className="brand-lockup"><div className="brand-mark" aria-hidden="true"><span /><span /><span /></div><div><p className="brand-name">Financial Tracker</p><p className="brand-subtitle">Quantum Violet OS</p></div></div>
       <div className="sidebar-section-label">Ship systems</div>
-      <nav className="nav-list">{navItems.map((item) => <button className={`nav-item ${focus === item.focus && view === "dashboard" ? "active" : ""}`} key={item.label} onClick={() => selectFocus(item.focus)} type="button"><span className="nav-icon" aria-hidden="true">{item.icon}</span><span>{item.label}</span>{focus === item.focus && view === "dashboard" && <span className="nav-pip" aria-hidden="true" />}</button>)}</nav>
+      <nav className="nav-list">{navItems.map((item) => <button className={`nav-item ${focus === item.focus ? "active" : ""}`} key={item.label} onClick={() => selectFocus(item.focus, view === "dashboard")} type="button"><span className="nav-icon" aria-hidden="true">{item.icon}</span><span>{item.label}</span>{focus === item.focus && <span className="nav-pip" aria-hidden="true" />}</button>)}</nav>
       <div className="sidebar-footer"><div className="system-status"><span className="status-dot" aria-hidden="true" /><div><span className="system-status-label">System status</span><strong>All local systems ready</strong></div></div><button className="settings-link" type="button">⚙ Settings</button></div>
     </aside>
     <section className="workspace">
       <header className="topbar"><div><p className="eyebrow">Captain&apos;s console / paper environment</p><h1>Good evening, Kaedin</h1></div><div className="topbar-actions"><div className="mode-switch" role="group" aria-label="View mode"><button className={view === "dashboard" ? "selected" : ""} onClick={() => setView("dashboard")} type="button">Dashboard</button><button className={view === "ship" ? "selected" : ""} onClick={() => setView("ship")} type="button">Ship view</button></div><div className="avatar" aria-label="Kaedin profile">K</div></div></header>
-      <div className="workspace-content">{view === "dashboard" ? <DashboardView trace={trace} traceError={traceError} focus={focus} onFocus={selectFocus} /> : <ShipView onFocus={selectFocus} />}</div>
+      <div className="workspace-content">{view === "dashboard" ? <DashboardView trace={trace} traceError={traceError} focus={focus} onFocus={selectFocus} /> : <ShipView trace={trace} focus={focus} onFocus={selectFocus} />}</div>
     </section>
   </main>;
 }
@@ -85,4 +85,19 @@ function MissionDetail({ focus, trace }: { focus: Focus; trace: MissionTrace | n
 
 function Fact({ label, value, tone }: { label: string; value: string; tone: string }) { return <div className="fact-row"><span>{label}</span><strong className={tone}>{value}</strong></div>; }
 function TraceStep({ number, label, detail, status, warning = false, onClick }: { number: string; label: string; detail: string; status: string; warning?: boolean; onClick: () => void }) { return <button className="trace-step trace-button" onClick={onClick} type="button"><span className="trace-number">{number}</span><div className={`trace-check ${warning ? "warning" : ""}`}>{warning ? "!" : "✓"}</div><div className="trace-copy"><strong>{label}</strong><span>{detail}</span></div><span className={`trace-status ${warning ? "warning-text" : ""}`}>{status}</span></button>; }
-function ShipView({ onFocus }: { onFocus: (focus: Focus) => void }) { return <div className="ship-view" aria-label="3D ship view"><div className="ship-copy"><p className="eyebrow">Simulation deck / interactive 3D ship</p><h2>Mission control, in orbit.</h2><p>Orbit the command deck, watch the crew move, and select a station to inspect the same AMD mission trace shown in the dashboard.</p><div className="ship-legend"><span><i className="legend-dot violet" />Command</span><span><i className="legend-dot cyan" />Research</span><span><i className="legend-dot pink" />Analysis</span></div></div><ShipScene onFocus={onFocus} /></div>; }
+function ShipView({ trace, focus, onFocus }: { trace: MissionTrace | null; focus: Focus; onFocus: (focus: Focus) => void }) { return <div className="ship-view" aria-label="3D ship view"><div className="ship-copy"><p className="eyebrow">Simulation deck / interactive 3D ship</p><h2>Mission control, in orbit.</h2><p>The ship is the primary navigation surface. Orbit the command deck, select a crew station, and inspect what the agents are doing without leaving the ship.</p><div className="ship-legend"><span><i className="legend-dot violet" />Command</span><span><i className="legend-dot cyan" />Research</span><span><i className="legend-dot pink" />Analysis</span></div></div><ShipScene onFocus={onFocus} /><ShipInfoPanel focus={focus} trace={trace} onClose={() => onFocus("command")} /></div>; }
+
+function ShipInfoPanel({ focus, trace, onClose }: { focus: Focus; trace: MissionTrace | null; onClose: () => void }) {
+  const report = trace?.reports[0];
+  const signal = trace?.signals[0];
+  const titles: Record<Focus, string> = { command: "Captain's console", research: "Data Observatory", analysis: "Strategy Core", portfolio: "Exchange Bridge", archive: "Archive Bay", simulation: "Simulation Deck" };
+  const descriptions: Record<Focus, string> = {
+    command: "The ship is ready. Select a station or crew member to inspect the current mission.",
+    research: `${trace?.normalized_facts.length ?? 0} normalized facts are attached to this mission, from ${trace?.sources[0]?.provider ?? "the evidence fixture"}.`,
+    analysis: `${report?.outcome ?? "Waiting for report"}. Score ${report?.score ?? "—"}; confidence ${report?.confidence ? `${Math.round(report.confidence * 100)}%` : "—"}.`,
+    portfolio: `Portfolio decision: ${signal?.action ?? "NO_ACTION"}. ${trace?.paper_orders.length ?? 0} paper orders created.`,
+    archive: `${trace?.events.length ?? 0} immutable audit events and ${trace?.approvals.length ?? 0} approval record are attached to this mission.`,
+    simulation: "Paper-only simulation deck. No live broker is connected and no real order can be placed.",
+  };
+  return <aside className={`ship-info-panel ${focus === "command" ? "command-panel" : ""}`} aria-live="polite"><div className="ship-info-heading"><div><p className="eyebrow">In-world telemetry</p><h3>{titles[focus]}</h3></div>{focus !== "command" && <button className="panel-close" onClick={onClose} type="button" aria-label="Close station panel">×</button>}</div><p className="ship-info-copy">{descriptions[focus]}</p><div className="ship-info-readout"><span>MISSION</span><strong>{trace?.mission.mission_key ?? missionKey}</strong></div><div className="ship-info-readout"><span>STATE</span><strong className={focus === "portfolio" ? "positive-text" : "cyan-text"}>{trace?.mission.status ?? "loading"}</strong></div></aside>;
+}
